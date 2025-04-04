@@ -3,169 +3,1503 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpyMC - FAQ</title>
+    <title>SPYMC Interactive | Game Development & Gaming Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        :root {
+            --primary: #6e45e2;
+            --primary-dark: #4a2dbb;
+            --secondary: #ff6b6b;
+            --accent: #ffd166;
+            --dark: #0f0f1a;
+            --darker: #070710;
+            --light: #f0f0ff;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --card-bg: rgba(30, 30, 50, 0.9);
+            --glass: rgba(255, 255, 255, 0.1);
+            --game-purple: #8a2be2;
+            --game-blue: #00b4d8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0d1117;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
+            background-color: var(--dark);
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(110, 69, 226, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(255, 107, 107, 0.15) 0%, transparent 25%);
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
             overflow-x: hidden;
         }
-        .navbar {
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Header Styles */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #161b22;
-            padding: 10px 20px;
-        }
-        .hamburger {
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .sidebar {
+            padding: 1.5rem 2rem;
             position: fixed;
+            width: 100%;
             top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100%;
-            background: #161b22;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 15, 30, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 1rem 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-container {
             display: flex;
-            flex-direction: column;
-            padding-top: 60px;
-            transition: left 0.3s ease;
+            align-items: center;
+            gap: 1rem;
         }
-        .sidebar.active {
-            left: 0;
+
+        .logo {
+            height: 50px;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 5px rgba(110, 69, 226, 0.5));
         }
-        .link {
-            color: #ffffff;
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(110, 69, 226, 0.3);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 10px rgba(110, 69, 226, 0.8));
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--light);
             text-decoration: none;
-            font-weight: bold;
-            padding: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.3);
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+        }
+
+        .game-button {
+            background: var(--game-purple);
+            color: white;
+            border: 2px solid var(--accent);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .game-button:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 0 15px var(--game-purple);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 10rem 0 6rem;
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(110, 69, 226, 0.3);
+            letter-spacing: 1px;
+            line-height: 1.2;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+            line-height: 1.8;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.2s;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.4s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Section Spacing */
+        .section-spacer {
+            height: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-spacer::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .about-feature i {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-top: 0.3rem;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: all 0.5s ease;
+        }
+
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
             display: block;
-            transition: background 0.3s ease;
         }
-        .link:hover, .link.active {
-            background: #21262d;
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(110, 69, 226, 0.3), rgba(255, 107, 107, 0.3));
+            z-index: 1;
         }
-        .faq-container {
-            max-width: 800px;
-            margin: auto;
-            text-align: left;
+
+        /* Games Section */
+        .games-section {
+            padding: 6rem 0;
         }
-        .faq-item {
-            background: #161b22;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 10px;
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .games-grid .game-card:nth-child(1) {
+            animation: fadeInUp 0.8s ease forwards 0.2s;
+        }
+        .games-grid .game-card:nth-child(2) {
+            animation: fadeInUp 0.8s ease forwards 0.4s;
+        }
+        .games-grid .game-card:nth-child(3) {
+            animation: fadeInUp 0.8s ease forwards 0.6s;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(110, 69, 226, 0.3);
+        }
+
+        .game-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .game-card:hover .game-image img {
+            transform: scale(1.1);
+        }
+
+        .game-content {
+            padding: 1.5rem;
+        }
+
+        .game-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .game-content p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .game-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .game-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+
+        .game-button-small {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: var(--gradient);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .game-button-small:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.5);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 6rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .features-grid .feature-card {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .features-grid .feature-card:nth-child(1) { animation-delay: 0.2s; }
+        .features-grid .feature-card:nth-child(2) { animation-delay: 0.4s; }
+        .features-grid .feature-card:nth-child(3) { animation-delay: 0.6s; }
+        .features-grid .feature-card:nth-child(4) { animation-delay: 0.8s; }
+        .features-grid .feature-card:nth-child(5) { animation-delay: 1.0s; }
+        .features-grid .feature-card:nth-child(6) { animation-delay: 1.2s; }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(110, 69, 226, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .feature-card p {
+            opacity: 0.9;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 6rem 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .team-grid .team-card:nth-child(1) { animation: fadeInUp 0.8s ease forwards 0.2s; }
+        .team-grid .team-card:nth-child(2) { animation: fadeInUp 0.8s ease forwards 0.4s; }
+        .team-grid .team-card:nth-child(3) { animation: fadeInUp 0.8s ease forwards 0.6s; }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(110, 69, 226, 0.2);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover .team-avatar {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .team-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .team-card p {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .team-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .team-social a:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+        }
+
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 0.3rem;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 1px solid #30363d;
+            font-family: 'Poppins', sans-serif;
         }
-        .faq-item:hover {
-            background: #21262d;
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
         }
-        .faq-question {
-            font-size: 18px;
-            font-weight: bold;
-            color: #58a6ff;
+
+        /* Footer */
+        footer {
+            background: rgba(7, 7, 16, 0.9);
+            padding: 6rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
         }
-        .faq-answer {
-            display: none;
-            padding-top: 10px;
-            color: #8b949e;
-            font-size: 16px;
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
         }
-        a {
-            color: #58a6ff;
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gradient);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+            transform: translateX(0);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links li:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
         }
-        a:hover {
-            text-decoration: underline;
+
+        .footer-links a:hover {
+            color: var(--accent);
         }
-        .footer {
-            margin-top: 20px;
-            padding: 15px;
-            background: #161b22;
-            color: #ffffff;
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.3);
+        }
+
+        .copyright {
             text-align: center;
-            font-size: 14px;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-content, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+                transform: perspective(1000px) rotateY(0deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Particle animation */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(110, 69, 226, 0.5);
+            animation: float linear infinite;
+        }
+
+        .particle:nth-child(3n) {
+            background: rgba(255, 107, 107, 0.5);
+        }
+
+        .particle:nth-child(5n) {
+            background: rgba(255, 209, 102, 0.5);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 1; }
+            100% { transform: translateY(-1000px) translateX(200px); opacity: 0; }
+        }
+
+        /* Game console effect */
+        .console-effect {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--game-blue);
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            color: var(--game-blue);
+            text-shadow: 0 0 5px var(--game-blue);
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.5s;
+        }
+
+        .console-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(0, 180, 216, 0.05),
+                transparent
+            );
+            pointer-events: none;
+        }
+
+        .console-text {
+            line-height: 1.6;
+        }
+
+        .console-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: var(--game-blue);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted var(--accent);
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--darker);
+            color: var(--light);
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            border: 1px solid var(--accent);
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <h2>SpyMC</h2>
-        <div class="hamburger" onclick="toggleMenu()">
-            &#9776;
+    <div class="particles" id="particles"></div>
+    
+    <header id="mainHeader">
+        <div class="logo-container">
+            <img src="https://media.discordapp.net/attachments/1288405141308833813/1296084022845509662/image0.png?ex=67ec818f&is=67eb300f&hm=b48604f69a211b48ceb23e92a8c11b3e37fe5459c1e1cb40ecb20c6698a98423&=&format=webp&quality=lossless&width=400&height=136" alt="SPYMC Interactive" class="logo">
+            <span class="logo-text">INTERACTIVE</span>
         </div>
-    </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="#contact" class="cta-button">Join Us</a>
+    </header>
 
-    <div class="sidebar" id="sidebar">
-        <a href="#" class="link active">Home</a>
-        <a href="rules.html" class="link">Rules</a>
-        <a href="admin-team.html" class="link">Team</a>
-        <a href="search.html" class="link">Tier</a>
-        <a href="https://solo.to/yoursenior" class="link">Owner</a>
-    </div>
-    
-    <h1>SpyMC - Frequently Asked Questions</h1>
-    <div class="faq-container">
-        <div class="faq-item" onclick="toggleFAQ(this)">
-            <p class="faq-question">What is SpyMC?</p>
-            <p class="faq-answer">SpyMC is a premium Minecraft server offering various game modes and a great community.</p>
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Next-Gen Game Development</h1>
+            <p>SPYMC Interactive is an innovative gaming hub and game development studio creating immersive multiplayer experiences and unique game concepts. Join us in shaping the future of gaming!</p>
+            
+            <div class="console-effect">
+                <div class="console-text" id="consoleText">
+                    >_<span class="console-cursor"></span>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#games" class="cta-button">Our Games</a>
+                <a href="https://discord.gg/5xRN9kSP9V" target="_blank" class="cta-button game-button">Join Discord</a>
+            </div>
         </div>
-        <div class="faq-item" onclick="toggleFAQ(this)">
-            <p class="faq-question">Who is the owner of SpyMC?</p>
-            <p class="faq-answer">SpyMC is owned and managed by Senior.</p>
+    </section>
+
+    <div class="section-spacer"></div>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About SPYMC Interactive</h2>
+                <p>We're a passionate team of developers, designers, and gamers creating the next generation of interactive experiences.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Innovative Gaming Hub & Development Studio</h3>
+                    <p>Founded by SeniorNetwork, SPYMC Interactive combines cutting-edge technology with creative game design to deliver unforgettable gaming experiences. We specialize in multiplayer games, mod development, and server hosting.</p>
+                    <p>Our mission is to push the boundaries of what's possible in gaming, creating immersive worlds that bring players together.</p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-gamepad"></i>
+                            <div>
+                                <h4>Game Development</h4>
+                                <p>Creating immersive and interactive games</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h4>Gaming Hub</h4>
+                                <p>A community for gamers and creators</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-server"></i>
+                            <div>
+                                <h4>Server Hosting</h4>
+                                <p>Premium game server solutions</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-lightbulb"></i>
+                            <div>
+                                <h4>Innovation</h4>
+                                <p>Experimenting with new gaming ideas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Game Development">
+                </div>
+            </div>
         </div>
-        <div class="faq-item" onclick="toggleFAQ(this)">
-            <p class="faq-question">When was SpyMC started?</p>
-            <p class="faq-answer">SpyMC was launched in November 2021.</p>
+    </section>
+
+    <div class="section-spacer"></div>
+
+    <section class="games-section" id="games">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Game Projects</h2>
+                <p>Explore our current and upcoming game projects that redefine interactive entertainment.</p>
+            </div>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="https://images.unsplash.com/photo-1551103782-8ab07afd45c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Spy Interactive">
+                    </div>
+                    <div class="game-content">
+                        <h3>Spy Interactive</h3>
+                        <p>A unique multiplayer espionage game with stealth mechanics and team-based objectives.</p>
+                        <div class="game-tags">
+                            <span class="game-tag">Multiplayer</span>
+                            <span class="game-tag">Stealth</span>
+                            <span class="game-tag">Action</span>
+                        </div>
+                        <a href="#" class="game-button-small">Learn More</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="https://images.unsplash.com/photo-1637858868799-7f26a0640eb6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="Brain Challenge">
+                    </div>
+                    <div class="game-content">
+                        <h3>Brain Challenge</h3>
+                        <p>A mind-bending puzzle and trivia game that tests your knowledge and problem-solving skills.</p>
+                        <div class="game-tags">
+                            <span class="game-tag">Puzzle</span>
+                            <span class="game-tag">Trivia</span>
+                            <span class="game-tag">Educational</span>
+                        </div>
+                        <a href="#" class="game-button-small">Learn More</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="https://images.unsplash.com/photo-1607513746994-51f730a44832?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="SpyMC Network">
+                    </div>
+                    <div class="game-content">
+                        <h3>SpyMC Network</h3>
+                        <p>A Minecraft multiplayer network featuring custom game modes, plugins, and community events.</p>
+                        <div class="game-tags">
+                            <span class="game-tag">Minecraft</span>
+                            <span class="game-tag">Multiplayer</span>
+                            <span class="game-tag">Minigames</span>
+                        </div>
+                        <a href="https://spymc.xyz" target="_blank" class="game-button-small">Visit Network</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="faq-item" onclick="toggleFAQ(this)">
-            <p class="faq-question">Who is Ashu?</p>
-            <p class="faq-answer">Ashu is the co-owner of SpyMC, appointed in February 2022.</p>
+    </section>
+
+    <div class="section-spacer"></div>
+
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose SPYMC Interactive?</h2>
+                <p>We provide unique gaming experiences with powerful features designed for players and developers.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Innovative Gameplay</h3>
+                    <p>We create unique game mechanics and experiences that push the boundaries of traditional gaming.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Vibrant Community</h3>
+                    <p>Join our growing community of gamers, developers, and content creators.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Premium Servers</h3>
+                    <p>High-performance game servers with low latency and 99.9% uptime.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Modding Support</h3>
+                    <p>Extensive modding tools and documentation for custom content creation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Esports Ready</h3>
+                    <p>Competitive gaming features with tournament support and leaderboards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Early Access</h3>
+                    <p>Get exclusive access to beta tests and upcoming game features.</p>
+                </div>
+            </div>
         </div>
-        <div class="faq-item" onclick="toggleFAQ(this)">
-            <p class="faq-question">How can I donate or buy ranks?</p>
-            <p class="faq-answer">You can purchase ranks via our Discord. Join <a href="https://discord.spymc.xyz" target="_blank">discord.spymc.xyz</a> for more details.</p>
+    </section>
+
+    <div class="section-spacer"></div>
+
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Team</h2>
+                <p>The creative minds behind SPYMC Interactive's innovative projects.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Senior" class="team-avatar">
+                    <h3>Senior</h3>
+                    <p>Founder & Lead Developer</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Alice" class="team-avatar">
+                    <h3>Alice</h3>
+                    <p>Game Designer</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-artstation"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Mike" class="team-avatar">
+                    <h3>Mike</h3>
+                    <p>Server Architect</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="faq-item" onclick="toggleFAQ(this)">
-            <p class="faq-question">How do I get a free "Spy Rank"?</p>
-            <p class="faq-answer">Join our Discord and create a ticket in the <strong>🔖・ᴛɪᴄᴋᴇᴛ</strong> channel to receive this free rank, along with exclusive rewards!</p>
+    </section>
+
+    <div class="section-spacer"></div>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Have questions or want to collaborate? Reach out to our team.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>support@spymc.xyz</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <div>
+                                <h4>Website</h4>
+                                <p>interactive.spymc.xyz</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-discord"></i>
+                            <div>
+                                <h4>Discord</h4>
+                                <p>discord.gg/5xRN9kSP9V</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="faq-item" onclick="toggleFAQ(this)">
-            <p class="faq-question">Is SpyMC a chill server?</p>
-            <p class="faq-answer">Yes! SpyMC is a great place to chill, play, and connect with others.</p>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SPYMC Interactive</h3>
+                    <p>Next-generation game development studio and gaming hub creating immersive multiplayer experiences.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#games">Games</a></li>
+                        <li><a href="#features">Features</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Developer API</a></li>
+                        <li><a href="#">Modding Tools</a></li>
+                        <li><a href="#">Community Forums</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">DMCA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 SPYMC Interactive by SeniorNetwork. All rights reserved.</p>
+            </div>
         </div>
-        <div class="faq-item" onclick="toggleFAQ(this)">
-            <p class="faq-question">What game modes do you offer?</p>
-            <p class="faq-answer">We offer Survival, Creative, Mini-Games, PvP, and more exciting modes!</p>
-        </div>
-        <div class="faq-item" onclick="toggleFAQ(this)">
-            <p class="faq-question">Where can I get support?</p>
-            <p class="faq-answer">Join our Discord at <a href="https://discord.spymc.xyz" target="_blank">discord.spymc.xyz</a> for help!</p>
-        </div>
-    </div>
-    
-    <div class="footer">
-        <p>&copy; 2025 SpyMC. All rights reserved. | Created with ❤️ by Senior</p>
-    </div>
-    
+    </footer>
+
     <script>
-        function toggleFAQ(element) {
-            let answer = element.querySelector(".faq-answer");
-            answer.style.display = answer.style.display === "block" ? "none" : "block";
-        }
-        
-        function toggleMenu() {
-            let sidebar = document.getElementById("sidebar");
-            sidebar.classList.toggle("active");
-        }
+        // Particle animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                // Random animation duration between 10s and 20s
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+
+            // Typewriter effect for console
+            const consoleText = document.getElementById('consoleText');
+            const textLines = [
+                "[SPYMC] Initializing game engine...",
+                "[SPYMC] Loading assets...",
+                "[SPYMC] Connecting to services...",
+                "[SPYMC] Syncing player data...",
+                "[SPYMC] Systems ready",
+                ">_"
+            ];
+            
+            consoleText.innerHTML = '';
+            let lineIndex = 0;
+            let charIndex = 0;
+            
+            function typeWriter() {
+                if (lineIndex < textLines.length) {
+                    if (charIndex < textLines[lineIndex].length) {
+                        consoleText.innerHTML += textLines[lineIndex].charAt(charIndex);
+                        charIndex++;
+                        setTimeout(typeWriter, Math.random() * 50 + 30);
+                    } else {
+                        consoleText.innerHTML += '<br>';
+                        lineIndex++;
+                        charIndex = 0;
+                        setTimeout(typeWriter, 500);
+                    }
+                } else {
+                    // Add blinking cursor after typing is done
+                    consoleText.innerHTML += '<span class="console-cursor"></span>';
+                }
+            }
+            
+            // Start typing after a short delay
+            setTimeout(typeWriter, 1000);
+
+            // Header scroll effect
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.');
+                    this.reset();
+                });
+            }
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.game-card, .feature-card, .team-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
     </script>
 </body>
 </html>
